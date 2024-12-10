@@ -1,0 +1,65 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #eaeaea;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #f0f8ff; /* Light blue background */
+}
+
+.tableauPlaceholder {
+    width: 100%; /* Makes the container responsive to the screen size */
+  max-width: 1200px; /* Ensures it doesn't grow too wide */
+  height: 600px; /* Set a good height for the graph */
+  margin: 20px auto; /* Centers the container and adds spacing */
+  border: 2px solid #ccc; /* Adds a subtle border around the graph */
+  border-radius: 10px; /* Rounds the corners of the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for depth */
+  overflow: hidden; /* Ensures no content overflows the container */
+
+}
+
+.header {
+    background-image: url('football-field.jpg');
+    color: rgb(139, 127, 127);
+    text-align: center;
+    padding: 20px;
+}
+
+.header nav a {
+    color: #0535f4;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.header nav a:hover {
+    text-decoration: underline;
+}
+
+.section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    color: #71727c;
+}
+
+.gallery-image {
+    width: 250px;
+    height: auto;
+    margin: 15px;
+    border: 3px solid #ccc;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    background-color: #9c9b9b;
+    color: white;
+    padding: 10px 0;
+}

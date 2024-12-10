@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .mood-options {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .mood-options button {
+      font-size: 24px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    .mood-options button:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+    textarea {
+      width: 90%;
+      max-width: 400px;
+      height: 100px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .log {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .log-entry {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mood Tracker & Journal</h1>
+  <p>Select your mood:</p>
+  <div class="mood-options">
+    <button onclick="logMood('😀')">😀</button>
+    <button onclick="logMood('😢')">😢</button>
+    <button onclick="logMood('😡')">😡</button>
+    <button onclick="logMood('🤔')">🤔</button>
+    <button onclick="logMood('🥳')">🥳</button>
+  </div>
+  <textarea id="journal-entry" placeholder="Write about your day (optional)..."></textarea>
+  <button onclick="saveEntry()">Save Entry</button>
+  <div class="log" id="log-container">
+    <h2>Your Entries:</h2>
+  </div>
+
+  <script>
+    // Load saved entries
+    document.addEventListener('DOMContentLoaded', loadEntries);
+
+    function logMood(mood) {
+      document.getElementById('journal-entry').value = `Mood: ${mood}\n` + document.getElementById('journal-entry').value;
+    }
+
+    function saveEntry() {
+      const entry = document.getElementById('journal-entry').value.trim();
+      if (!entry) return alert('Please write something or select a mood.');
+      
+      const logContainer = document.getElementById('log-container');
+      const logEntry = document.createElement('div');
+      logEntry.classList.add('log-entry');
+      logEntry.textContent = `${new Date().toLocaleString()}: ${entry}`;
+      logContainer.appendChild(logEntry);
+      
+      saveToStorage(logEntry.textContent);
+      document.getElementById('journal-entry').value = ''; // Clear textarea
+    }
+
+    function saveToStorage(entry) {
+      const entries = JSON.parse(localStorage.getItem('moodEntries')) || [];
+      entries.push(entry);
+      localStorage.setItem('moodEntries', JSON.stringify(entries));
+    }
+
+    function loadEntries() {
+      const entries = JSON.parse(localStorage.getItem('moodEntries')) || [];
+      const logContainer = document.getElementById('log-container');
+      entries.forEach(entry => {
+        const logEntry = document.createElement('div');
+        logEntry.classList.add('log-entry');
+        logEntry.textContent = entry;
+        logContainer.appendChild(logEntry);
+      });
+    }
+  </script>
+</body>
+</html>
